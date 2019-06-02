@@ -3,7 +3,7 @@ import { useAppContext } from './Hooks';
 import { newMessage } from '../state/actions';
 
 function PublishedMessage() {
-    const { dispatch } = useAppContext();
+    const { pubsub: { publish } } = useAppContext();
     const [text, setText] = useState('');
 
     const updateText = event => {
@@ -11,7 +11,7 @@ function PublishedMessage() {
     }
 
     const publishMessage = () => {
-        dispatch(newMessage(text));
+        publish(newMessage(text));
     }
 
     const handleKeyPress = event => {
