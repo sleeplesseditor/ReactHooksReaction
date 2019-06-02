@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import reducer, { initialState } from '../state/reducer';
-import { newMessage } from '../state/actions';
+import Context from '../context';
 import PublishedMessage from './PublishedMessage';
 import MessageBoard from './MessageBoard';
 
@@ -8,13 +8,13 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div className="App">
+    <Context.Provider value={{ state, dispatch }}>
       <h2>Reaction</h2>
       <hr />
-      <PublishedMessage dispatch={dispatch} />
+      <PublishedMessage />
       <hr />
-      <MessageBoard messages={state.messages} />
-    </div>
+      <MessageBoard />
+    </Context.Provider>
   );
 }
 
